@@ -33,6 +33,8 @@ export S3_ENDPOINT="https://<NAMESPACE>.compat.objectstorage.<REGION>.oracleclou
 export OCI_BUCKET="<BUCKET>"
 export OCI_PREFIX="<PREFIX>"
 ```
+Where Region, Namespace, Bucket, and Prefix are taken from your Buckets in the OCI Console.
+AWS_ACCESS_KEY_ID and AWS_SECRET_KEY_ID are generated in your profile in the OCI Console.
 ```
 ./listBuckets $S3_ENDPOINT $OCI_REGION $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
 ```
