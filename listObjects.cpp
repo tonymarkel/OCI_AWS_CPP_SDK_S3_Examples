@@ -6,18 +6,24 @@
 using namespace Aws;
 using namespace Aws::Auth;
 
-// usage listObjects s3-url region accesskey secretkey bucket prefix
+// usage listObjects namespace region accesskey secretkey bucket prefix
 
 int main(int argc, char **argv) {
+    if (argc != 7) {
+        std::cout << "Usage: " << argv[0] << " namespace region accesskey secretkey bucket prefix" << std::endl;
+        return -1;
+    }
     Aws::SDKOptions m_options;
-    Aws::InitAPI(m_options);
+    Aws::InitAPI(m_options); // Should only be called once.
     Aws::Client::ClientConfiguration cfg;
-    // first param is S3 compatible URL, e.g. https://namespace.compat.objectstorage.region.oraclecloud.com/ 
-    cfg.endpointOverride = argv[1];
+    // first param is namespace, 2nd param is region 
+    // S3 compatible URL is https://NAMESPACE.compat.objectstorage.REGION.oraclecloud.com/ 
+    cfg.endpointOverride = std::string("https://") + argv[1] + ".compat.objectstorage." + argv[2] + ".oraclecloud.com/" ;
+    std::cout << "S3 Endpoint is: " << cfg.endpointOverride << std::endl;
+    std::cout << "Bucket is:" << argv[5] << std::endl;
+    std::cout << "Prefix is:" << argv[6] << std::endl;
     cfg.scheme = Aws::Http::Scheme::HTTP;
-    // no need to turn off ssl verification, we have the SANs in the certs
     cfg.verifySSL = true;
-    // 2nd param is the region - actually, we can also have namespace and region to create the URL 
     cfg.region = argv[2];
     // 3rd param is access key, 4th param is secret key
     Aws::S3::S3Client m_client(Aws::Auth::AWSCredentials(argv[3], argv[4]), cfg,
