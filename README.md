@@ -1,21 +1,3 @@
---- 
-
-duration: PT0H45M0S 
-
-description: Learn how to use the OCI Object Storage S3 Compatibility API with the AWS C++ SDK
-
-level: Intermediate 
-
-roles: DevOps Engineer;Developer 
-
-products: en/cloud/oracle-cloud-infrastructure/oci;en/cloud/oracle-cloud-infrastructure/object-storage 
-
-keywords: Object,Storage 
-
-inject-note: true 
-
---- 
-
 # Learn how to use the OCI Object Storage S3 Compatibility API with the AWS C++ SDK 
 
 ## Introduction 
